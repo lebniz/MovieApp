@@ -17,7 +17,10 @@
         v-for="(item, index) in wholeResponse"
         :key="index"
         mb-2>
-        <v-card>
+        <v-hover>
+        <v-card 
+          slot-scope="{ hover }"
+          :class="`elevation-${hover ? 12 : 2}`">
           <v-img
             :src="item.Poster"
             aspect-ratio="1"
@@ -40,6 +43,7 @@
           </v-card-actions>
 
         </v-card>
+      </v-hover>
       </v-flex>
   </v-layout>
   </v-container>

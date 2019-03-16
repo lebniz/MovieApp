@@ -10,15 +10,12 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-<v-flex xs12 sm6 md3>
-<select v-model="selectType" @change="onChange()" >
-  <option disabled value="">TYPES</option>
-  <option value="movie">movie</option>
-  <option value="series">series</option>
-  <option value="episode">episode</option>
-</select>
-        </v-flex>
-
+<v-flex xs12 sm6 md1>
+     <v-combobox
+          v-model="selectType"
+          :items="items"
+        ></v-combobox>
+</v-flex>
 <v-flex xs12 sm6 md3>
         <v-text-field
           label='Movie Name'
@@ -49,13 +46,20 @@ export default {
   data () {
     return {
       searchString: '',
-      selectType: ''
+      selectType: 'Type',
+        items: [
+          'Type',
+          'Movie',
+          'Series',
+          'Episode'
+        ]
     }
   },
   methods: {
     searchMovie () {
       this.$router.push('/search/' + this.searchString + '-' + this.selectType)
       this.searchString = ''
+      this.selectType = 'Type'
     }
     // onChange() {
     //   this.$router.push('/search/' + this.selectType)

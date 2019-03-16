@@ -62,7 +62,7 @@
                 </tr>
                 <tr v-for="(rating,index) in this.ratings" :key="index">
                   <td align="center">{{ratings[index].Source}}</td>
-                  <td align="center"><v-rating :half-increments="true" :value="ratings[index].Value"></v-rating></td>
+                  <td align="center"><v-rating color="amber" :half-increments="true" :value="ratings[index].Value"></v-rating></td>
                 </tr>
               </table>
             </v-card-text>
