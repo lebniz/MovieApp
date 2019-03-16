@@ -13,7 +13,7 @@
 
   <v-container v-else-if="noData">
     <div class="text-xs-center">
-    <h2>No Movie in API with {{this.name}}</h2>
+    <h2>No Movie in API with {{this.name}} </h2>
     </div>
   </v-container>
 
@@ -54,7 +54,7 @@
 <script>
 import movieApi from '@/services/MovieApi'
 export default {
-  props: ['name','type'],
+  props: ['name'],
   data () {
     return {
       movieResponse: [],
@@ -67,7 +67,8 @@ export default {
       this.$router.push('/movie/' + id)
     },
     fetchResult (value) {
-      movieApi.fetchMovieCollection(value)
+      var value = value.split('-')
+      movieApi.fetchMovieCollection(value[0],value[1])
         .then(response => {
           if (response.Response === 'True') {
             this.movieResponse = response.Search
@@ -85,11 +86,15 @@ export default {
   },
   mounted () {
     this.fetchResult(this.name)
+    // this.fetchTypeResult(this.type)
   },
   watch: {
     name (value) {
       this.fetchResult(value)
-    }
+    },
+    // type (value) {
+    //   this.fetchTypeResult(value)
+    // }
   }
 }
 </script>

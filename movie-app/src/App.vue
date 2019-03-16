@@ -11,7 +11,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
 <v-flex xs12 sm6 md3>
-<select v-model="selectType">
+<select v-model="selectType" @change="onChange()" >
   <option disabled value="">TYPES</option>
   <option value="movie">movie</option>
   <option value="series">series</option>
@@ -54,10 +54,14 @@ export default {
   },
   methods: {
     searchMovie () {
-      this.$router.push('/search/' + this.searchString)
+      this.$router.push('/search/' + this.searchString + '-' + this.selectType)
       this.searchString = ''
-      this.selectType = ''
     }
+    // onChange() {
+    //   this.$router.push('/search/' + this.selectType)
+    //   console.log(this.selectType)
+    //   this.selectType = ''
+    // }
   },
   computed: {
     dataAvailable () {
